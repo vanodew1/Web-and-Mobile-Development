@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syed Ibad Asim — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1117;
+    --panel:#151b23;
+    --panel-border:#262d38;
+    --text:#e6edf3;
+    --muted:#8b949e;
+    --accent:#7ee787;
+    --accent-dim:#2e7d4f;
+    --accent2:#58a6ff;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(126,231,135,0.05), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(88,166,255,0.05), transparent 40%);
+  }
+
+  a{color:var(--accent2);}
+  ::selection{background:var(--accent-dim); color:#fff;}
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  /* ---------- Top bar: fake file tree nav ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    gap:4px;
+    padding:14px 24px;
+    background:rgba(13,17,23,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--panel-border);
+    font-family:var(--mono);
+    font-size:0.85rem;
+    overflow-x:auto;
+  }
+  .nav-brand{
+    color:var(--accent);
+    font-weight:700;
+    margin-right:20px;
+    white-space:nowrap;
+  }
+  .nav-brand::before{content:"~/"; color:var(--muted);}
+  nav a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:6px 12px;
+    border-radius:6px;
+    white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  nav a:hover, nav a:focus-visible{
+    color:var(--text);
+    background:var(--panel);
+  }
+  nav a::before{content:"# "; color:var(--accent-dim);}
+
+  section{
+    max-width:880px;
+    margin:0 auto;
+    padding:72px 24px;
+    scroll-margin-top:70px;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--accent);
+    letter-spacing:0.05em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:"//"; color:var(--accent-dim);}
+
+  h1,h2,h3{font-family:var(--sans); font-weight:700; margin:0;}
+
+  /* ---------- Hero / Profile ---------- */
+  .hero{
+    padding-top:64px;
+    padding-bottom:56px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+  }
+
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.2rem);
+    line-height:1.15;
+    letter-spacing:-0.02em;
+  }
+  .hero h1 span{color:var(--accent);}
+  .role{
+    font-family:var(--mono);
+    color:var(--muted);
+    font-size:1.05rem;
+    margin-top:14px;
+  }
+  .role .cursor{
+    display:inline-block;
+    width:9px; height:1.1em;
+    background:var(--accent);
+    margin-left:2px;
+    vertical-align:text-bottom;
+    animation:blink 1s steps(1) infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .role .cursor{animation:none;}
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .bio{
+    margin-top:22px;
+    color:var(--muted);
+    font-size:1.02rem;
+    max-width:52ch;
+  }
+  .bio strong{color:var(--text); font-weight:600;}
+
+  .cta-row{
+    margin-top:30px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:0.85rem;
+  }
+  .btn{
+    padding:10px 18px;
+    border-radius:6px;
+    text-decoration:none;
+    border:1px solid var(--panel-border);
+    color:var(--text);
+    transition:border-color .15s, transform .15s;
+  }
+  .btn:hover{border-color:var(--accent); transform:translateY(-1px);}
+  .btn.primary{background:var(--accent); color:#0d1117; border-color:var(--accent); font-weight:700;}
+  .btn.primary:hover{background:#8ff29a;}
+
+  /* terminal window card */
+  .terminal{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 50px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:11px 14px;
+    background:#0f151c;
+    border-bottom:1px solid var(--panel-border);
+  }
+  .dot{width:11px; height:11px; border-radius:50%;}
+  .dot.r{background:#ff5f56;}
+  .dot.y{background:#ffbd2e;}
+  .dot.g{background:#27c93f;}
+  .terminal-title{
+    margin-left:8px;
+    font-family:var(--mono);
+    font-size:0.75rem;
+    color:var(--muted);
+  }
+  .terminal-body{
+    padding:20px;
+    font-family:var(--mono);
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+  .terminal-body .prompt{color:var(--accent);}
+  .terminal-body .cmd{color:var(--text);}
+  .terminal-body .out{margin:6px 0 16px; padding-left:0;}
+  .terminal-body .key{color:var(--accent2);}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:16px;
+    margin-top:32px;
+  }
+  @media (max-width:640px){.skills-grid{grid-template-columns:1fr;}}
+
+  .skill-card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    padding:20px 22px;
+  }
+  .skill-card h3{
+    font-family:var(--mono);
+    font-size:0.9rem;
+    color:var(--accent2);
+    margin-bottom:14px;
+  }
+  .skill-card h3::before{content:"$ "; color:var(--accent-dim);}
+
+  .tag-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tag{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    padding:5px 10px;
+    border-radius:5px;
+    background:#0f151c;
+    border:1px solid var(--panel-border);
+    color:var(--text);
+  }
+
+  /* ---------- Hobbies ---------- */
+  .hobbies-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-top:32px;
+  }
+  @media (max-width:760px){.hobbies-grid{grid-template-columns:repeat(2, 1fr);}}
+  @media (max-width:520px){.hobbies-grid{grid-template-columns:1fr;}}
+
+  .hobby-card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:10px;
+    padding:20px;
+    transition:border-color .15s, transform .15s;
+  }
+  .hobby-card:hover{border-color:var(--accent-dim); transform:translateY(-2px);}
+  .hobby-icon{font-size:1.6rem;}
+  .hobby-card h3{
+    font-size:1rem;
+    margin-top:10px;
+  }
+  .hobby-card p{
+    color:var(--muted);
+    font-size:0.88rem;
+    margin:6px 0 0;
+  }
+
+  footer{
+    text-align:center;
+    padding:40px 24px 60px;
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:0.8rem;
+  }
+  footer .prompt{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Syed Ibad Asim</span>
+  <a href="#profile">profile</a>
+  <a href="#skills">skills</a>
+  <a href="#hobbies">hobbies</a>
+</nav>
+
+<!-- ================= PROFILE ================= -->
+<section id="profile" class="hero">
+  <div>
+    <div class="eyebrow">whoami</div>
+    <h1>Syed Ibad Asim —<br><span>Computer Science Student</span></h1>
+    <p class="role">building things that run in browsers &amp; terminals<span class="cursor" aria-hidden="true"></span></p>
+    <p class="bio">
+      I'm a <strong>3rd-year Computer Science student</strong> at Habib University,
+      focused on web development and machine learning. I like turning half-formed
+      ideas into working prototypes, and I spend most weekends on side projects
+      that are slightly too ambitious for a weekend. Currently looking for a
+      <strong>summer internship</strong> in quantitative finance.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:syedibadasim1@gmail.com">Email me</a>
+      <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="terminal" aria-hidden="true">
+    <div class="terminal-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="terminal-title">about.sh</span>
+    </div>
+    <div class="terminal-body">
+      <div><span class="prompt">$</span> <span class="cmd">cat profile.json</span></div>
+      <div class="out">
+        {<br>
+        &nbsp;&nbsp;<span class="key">"name"</span>: "Syed Ibad Asim",<br>
+        &nbsp;&nbsp;<span class="key">"school"</span>: "Habib University",<br>
+        &nbsp;&nbsp;<span class="key">"year"</span>: "Junior (3rd year)",<br>
+        &nbsp;&nbsp;<span class="key">"focus"</span>: ["web dev", "ML"],<br>
+        &nbsp;&nbsp;<span class="key">"status"</span>: "open to internships"<br>
+        }
+      </div>
+      <div><span class="prompt">$</span> <span class="cmd">_</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="eyebrow">skills</div>
+  <h2>What I work with</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>languages</h3>
+      <div class="tag-list">
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">C++</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>web &amp; frameworks</h3>
+      <div class="tag-list">
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>tools</h3>
+      <div class="tag-list">
+        <span class="tag">Git/GitHub</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Docker</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>core cs</h3>
+      <div class="tag-list">
+        <span class="tag">Data Structures</span>
+        <span class="tag">Algorithms</span>
+        <span class="tag">OOP</span>
+        <span class="tag">Databases</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOBBIES ================= -->
+<section id="hobbies">
+  <div class="eyebrow">hobbies</div>
+  <h2>Outside the IDE</h2>
+
+  <div class="hobbies-grid">
+    <div class="hobby-card">
+      <div class="hobby-icon">🧩</div>
+      <h3>Competitive Programming</h3>
+      <p>Solving problems on LeetCode &amp; Codeforces most evenings.</p>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">🛠️</div>
+      <h3>Side Projects</h3>
+      <p>Building small apps and tools just to see if I can.</p>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">🎮</div>
+      <h3>Gaming</h3>
+      <p>Strategy and puzzle games — currently deep into chess.</p>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">📷</div>
+      <h3>Photography</h3>
+      <p>Street and landscape shots on weekend walks.</p>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">📚</div>
+      <h3>Reading</h3>
+      <p>Sci-fi novels and the occasional tech blog rabbit hole.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="prompt">$</span> made with care &amp; too much coffee — © 2026 Syed Ibad Asim
+</footer>
+
+</body>
+</html>
