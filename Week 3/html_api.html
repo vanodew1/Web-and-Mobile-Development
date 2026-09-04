@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML API Example</title>
+    </head>
+    <body>
+        <h1>Web Storage API</h1>
+        <p>Save your name in the browser using<code>localStorage</code>.</p>
+
+        <label for="name">Name:</label>
+        <input id="name" type="text" placeholder="Enter your name">
+        <input id="age" type="text" placeholder="Enter your age">
+        <button id="saveButton" type="button">Save</button>
+        <button id="clearButton" type="button">Clear name</button>
+        <p id="message"></p>
+        <script>
+            const nameInput = document.getElementById("name")
+            const message = document.getElementById("message")
+
+            function showSavedName() {
+                const savedName = localStorage.getItem("studentName");
+
+                if (savedName) {
+                    nameInput.value = savedName;
+                    message.textContent = `Welcome back,  ${savedName}!`;
+                } else {
+                    message.textContent = "No name has been saved yet.";
+                }
+            }
+
+            document.getElementById("saveButton").addEventListener("click", () => {
+                const name = nameInput.value.trim();
+
+                if (name) {
+                    localStorage.setItem("studentName", name);
+                    showSavedName();
+                } else {
+                    message.textContent = "Please enter a name first.";
+                }
+            });
+
+            document.getElementById("clearButton").addEventListener("click", () => {
+                localStorage.removeItem("studentName");
+                nameInput.value = "";
+                message.textContent = "Saved name cleared.";
+            });
+
+            showSavedName();
+        </script>
+    </body>
+</html>

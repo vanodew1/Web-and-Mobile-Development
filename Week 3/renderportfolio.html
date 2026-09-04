@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JavaScript Control Structures</title>
+</head>
+<body>
+    <h1>JavaScript Control Structures</h1>
+    <div>
+        <h2>1. if / else</h2>
+        <script>
+            let age = 20, grade = "A";
+            if (age >= 20 && grade === "A") {
+                document.write("<p>You passed.</p>");
+            } else {
+                document.write("<p>You failed.</p>");
+            }
+        </script>
+    </div>
+
+    <div>
+        <h2>2. switch</h2>
+        <script>
+            let classId = 370, day = "Thursday", className = "Web Dev";
+
+            switch (classId) {
+                case 370:
+                    className = "Web Dev";
+                    day = "Thursday"
+                    break;
+                case 2:
+                    className = "Some other class";
+                    break;
+            }
+
+            document.write("<p>class " + classId + " is " + className + " on " + day + ".</p>");
+        </script>
+    </div>
+
+    <div>
+        <h2>3. for loop</h2>
+        <script>
+            document.write("<p>Multiplication table of 11 till 10<br>");
+            
+            for (let i = 1; i <= 10; i++) {
+                document.write(i * 11 + "<br>");
+            }
+            document.write("</p>");
+        </script>
+    </div>
+
+    <div>
+        <h2>4. while loop</h2>
+        <script>
+            let count = 1;
+            document.write("<p>");
+            while (count <= 5) {
+                document.write(count + " ");
+                count++;
+            }
+            document.write("</p>");
+        </script>
+    </div>
+
+    <div>
+        <h2>5. break</h2>
+        <script>
+            document.write("<p>");
+            for (let i = 1; i <= 10; i++) {
+                if (i === 6) {
+                    break;
+                }
+                document.write(i + " ");
+            }
+            document.write("</p>");
+        </script>
+    </div>
+
+    <div>
+        <h2>6. continue</h2>
+        <script>
+            document.write("<p>");
+            for (let i = 1; i <= 6; i++) {
+                if (i === 3) {
+                    continue;
+                }
+                document.write(i + " ");
+            }
+            document.write("</p>");
+        </script>
+    </div>
+</body>
+
+</html>
