@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects - My Portfolio</title>
+<style>
+/* Base Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; background: #f4f4f6; color: #333; line-height: 1.6; }
+
+/* Typography & Spacing helpers */
+header, nav, main, aside, footer, article { padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+
+/* 1. Header & Navigation */
+header { background: #1e293b; color: white; text-align: center; }
+nav { background: #3b82f6; display: flex; gap: 20px; justify-content: center; }
+nav a { color: white; text-decoration: none; font-weight: bold; }
+nav a:hover { text-decoration: underline; font-weight: lighter; }
+
+/* 2. Main Content Area */
+main { background: white; max-width: 900px; margin: 0 auto; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+/* 3. Project cards */
+article { background: #f8fafc; border: 1px solid #e2e8f0; }
+article h3 { margin-bottom: 6px; }
+article .meta { color: #64748b; font-size: 0.9em; margin-bottom: 10px; }
+article ul { margin: 10px 0 12px 20px; }
+article .links a {
+margin-right: 15px;
+color: #3b82f6;
+font-weight: bold;
+text-decoration: none;
+        }
+article .links a:hover { text-decoration: underline; }
+
+/* 4. Footer */
+footer { background: #1e293b; color: white; text-align: center; margin-top: 15px; }
+</style>
+</head>
+<body>
+<header>
+<h1>My Projects</h1>
+</header>
+
+<!---Main Navigation Bar-->
+<nav>
+<a href="index.html">Home</a>
+<a href="projects.html">Projects</a>
+<a href="demo.html">Demos</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<main>
+<h2>What I've Built</h2>
+<p>A few projects from my coursework at Habib University, spanning quantitative finance, computer architecture, and data structures.</p>
+
+<article>
+<h3>Option Pricing: Black-Scholes to Heston</h3>
+<p class="meta">Python &middot; Advanced Differential Equations &middot; April 2026</p>
+<ul>
+<li>Derived the Black-Scholes PDE from geometric Brownian motion and solved it in closed form using a Green's function.</li>
+<li>Built a Monte Carlo pricer and a Carr-Madan FFT pricer (4096 strikes in ~12ms), then extended the model to Heston to reproduce the volatility smile.</li>
+</ul>
+<div class="links">
+<a href="https://github.com/Vanodew" target="_blank" rel="noopener">View on GitHub</a>
+</div>
+</article>
+
+<article>
+<h3>RISC-V Processor Design</h3>
+<p class="meta">Verilog &middot; Computer Architecture &middot; April 2026</p>
+<ul>
+<li>Designed a 64-bit, 5-stage pipelined processor with full hazard handling: forwarding, load-use stall detection, and branch resolution with pipeline flush.</li>
+<li>Synthesized a 32-bit RV32I processor onto a Basys 3 FPGA with memory-mapped I/O and a live 7-segment PC display, verified on hardware with a Fibonacci subroutine. Team of 3.</li>
+</ul>
+<div class="links">
+<a href="https://github.com/Vanodew" target="_blank" rel="noopener">View on GitHub</a>
+<a href="demo.html">Watch Demo</a>
+</div>
+</article>
+
+<article>
+<h3>Portfolio Optimization: Stock Return Analysis</h3>
+<p class="meta">Python &middot; Data Structures &middot; March 2025</p>
+<ul>
+<li>Hand-implemented a Fenwick (binary indexed) tree for O(log n) updates and prefix-sum queries over daily stock returns.</li>
+<li>Built a max-Sharpe efficient-frontier analyzer around it. Team of 3.</li>
+</ul>
+<div class="links">
+<a href="https://github.com/Vanodew" target="_blank" rel="noopener">View on GitHub</a>
+</div>
+</article>
+</main>
+
+<footer>
+<p>&copy; 2026 My Portfolio</p>
+</footer>
+
+</body>
+</html>
