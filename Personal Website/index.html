@@ -34,9 +34,29 @@ padding: 0 10px;
 /* 3. Main Content Area (Takes 3x space) */
 main { background: white; flex: 3; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 article { background: #f8fafc; border: 1px solid #e2e8f0; }
+article img { max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px; }
 
 /* 4. Sidebar Area (Takes 1x space) */
 aside { background: #e2e8f0; flex: 1; height: fit-content; }
+
+/* 4b. Responsive video container (keeps a 16:9 ratio at any screen size) */
+.video-wrapper {
+position: relative;
+padding-bottom: 56.25%; /* 16:9 */
+height: 0;
+overflow: hidden;
+max-width: 100%;
+border-radius: 8px;
+margin-top: 10px;
+        }
+.video-wrapper iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: 0;
+        }
 
 /* 5. Footer */
 footer { background: #1e293b; color: white; text-align: center; margin-bottom: 0; }
@@ -70,10 +90,16 @@ flex-direction: column; /* Stacks sidebar under content on mobile */
 <p>Learning Web Development with modern technologies!</p>
 
 <article>
-<h3>An Independent Article</h3>
-<p>This sub-container holds and independent post or widget that makes sense on its own.</p>
-<p>My garden is blooming with new flowers and fruits!</p>
+<h3>Diving into Quant Finance</h3>
+<p>Lately I've been really into quantitative finance, especially options pricing. I'm currently building out an NVDA options pricing pipeline and it's been one of the most exciting projects I've worked on.</p>
+<p>Combining programming with financial models to actually price real market instruments has been a great way to put my coding skills to use outside of typical web dev projects.</p>
 <a href="#">Read More</a>
+</article>
+
+<article>
+<h3>Celebrating a Friend's Birthday</h3>
+<p>Went out to celebrate my friend's birthday by the water and managed to grab this nice photo of the night.</p>
+<img src="images/birthday-celebration.png" alt="Standing by the waterfront at night during a friend's birthday celebration">
 </article>
 </main>
 
@@ -81,6 +107,15 @@ flex-direction: column; /* Stacks sidebar under content on mobile */
 <aside>
 <h3>Sidebar</h3>
 <p>Related links, Youtube videos links go here.</p>
+
+<div class="video-wrapper">
+<iframe
+src="https://www.youtube.com/embed/cKRinOtgATI"
+title="Youtube Video Player"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
+</div>
 </aside>
 </div>
 
