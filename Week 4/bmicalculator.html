@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BMI Calculator</title>
+    </head>
+    <body>
+        <h1>Simple BMI Calculator</h1>
+        <p>Enter your weight in kilograms and height in meters, then click "Calculate BMI"</p>
+        <label for="weight">Weight (Kg):</label>
+        <input id="weight" type="number" value="">
+        <label for="height">Height (m):</label>
+        <input id="height" type="number" value="">
+        <div>
+            <button id="calculateBtn" type="button">Calculate BMI</button>
+        </div>
+        <p id="result"></p>
+
+        <script>
+            "use strict";
+
+            const calculate = function (weight, height) {
+                try {
+                    const bmi = weight / (height * height);
+                    let category;
+
+                    if (bmi < 18.5) {
+                        category = "Underweight";
+                    } else if (bmi < 25.0) {
+                        category = "Healthy / Normal Weight";
+                    } else if (bmi < 30.0) {
+                        category = "Overweight";
+                    } else {
+                        category = "Obese";
+                    }
+
+                    return `Your BMI is ${bmi.toFixed(2)} (${category})`;
+                } catch (error) {
+                    console.error("calculate failed:", error.message);
+                }
+            };
+
+            document.getElementById("calculateBtn").addEventListener("click", () => {
+                const weight = Number(document.getElementById("weight").value);
+                const height = Number(document.getElementById("height").value);
+
+                document.getElementById("result").textContent = calculate(weight, height);
+            });
+        </script>
+    </body>
+</html>

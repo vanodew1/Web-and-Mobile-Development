@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript Function Expressions</title>
+    </head>
+    <body>
+        <h1>JavaScript Function Expression</h1>
+        <p>Using function expressions, arrow functions, and rest params to build a calculator.</p>
+        <p>Open the browser console to see the output.</p>
+
+        <label for="num1">Number 1:</label>
+        <input id="num1" type="number" value="10">
+        <label for="num2">Number 2:</label>
+        <input id="num2" type="number" value="5">
+
+        <div>
+            <button id="addBtn" type="button">Add</button>
+            <button id="subtractBtn" type="button">Subtract</button>
+            <button id="multiplyBtn" type="button">Multiply</button>
+            <button id="divideBtn" type="button">Divide</button>
+        </div>
+
+        <p id="result"></p>
+
+        <script>
+            "use strict";
+
+            const resultEl = document.getElementById("result");
+
+            // Function expression
+            const add = function (a, b) {
+                try {
+                    return a + b;
+                } catch (error) {
+                    console.error("add failed:", error.message);
+                }
+            };
+
+            // Arrow function
+            const subtract = (a, b) => {
+                try {
+                    return a - b;
+                } catch (error) {
+                    console.error("subtract failed:", error.message);
+                }
+            };
+
+            // Arrow function
+            const multiply = (a, b) => {
+                try {
+                    return a * b;
+                } catch (error) {
+                    console.error("multiply failed:", error.message);
+                }
+            };
+
+            // Arrow function
+            const divide = (a, b) => {
+                try {
+                    if (b === 0) {
+                        throw new Error("Cannot divide by zero");
+                    }
+                    return a / b;
+                } catch (error) {
+                    console.error("divide failed:", error.message);
+                }
+            };
+
+            // Rest params function
+            const sumAll = (...numbers) => {
+                try {
+                    return numbers.reduce((total, num) => total + num, 0);
+                } catch (error) {
+                    console.error("sumAll failed:", error.message);
+                }
+            };
+
+            // Reads the inputs and runs a given operation, used as a shared callback body
+            const runOperation = (label, operation) => {
+                const a = Number(document.getElementById("num1").value);
+                const b = Number(document.getElementById("num2").value);
+                const result = operation(a, b);
+                console.log(`${label}(${a}, ${b}) =`, result);
+                resultEl.textContent = `${label}(${a}, ${b}) = ${result}`;
+            };
+
+            // Button click events using callback fns
+            document.getElementById("addBtn").addEventListener("click", () => runOperation("add", add));
+            document.getElementById("subtractBtn").addEventListener("click", () => runOperation("subtract", subtract));
+            document.getElementById("multiplyBtn").addEventListener("click", () => runOperation("multiply", multiply));
+            document.getElementById("divideBtn").addEventListener("click", () => runOperation("divide", divide));
+
+            // Initial console output calling all the fns
+            const x = 10;
+            const y = 5;
+
+            console.log(`add(${x}, ${y}) =`, add(x, y));
+            console.log(`subtract(${x}, ${y}) =`, subtract(x, y));
+            console.log(`multiply(${x}, ${y}) =`, multiply(x, y));
+            console.log(`divide(${x}, ${y}) =`, divide(x, y));
+            console.log(`divide(${x}, 0) =`, divide(x, 0));
+            console.log("sumAll(1, 2, 3, 4, 5) =", sumAll(1, 2, 3, 4, 5));
+        </script>
+    </body>
+</html>
