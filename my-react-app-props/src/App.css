@@ -1,0 +1,71 @@
+.app-layout {
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.profile-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.profile-column > h2 {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.profile-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.profile-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-border);
+}
+
+.profile-card p {
+  margin: 4px 0;
+}
+
+.profile-card strong {
+  color: var(--text-h);
+}
+
+.status-badge {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-badge.online {
+  color: #16a34a;
+}
+
+.status-badge.offline {
+  color: #9ca3af;
+}
+
+.socials {
+  margin-top: 8px;
+}
+
+.socials ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.socials li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 4px 0;
+}
