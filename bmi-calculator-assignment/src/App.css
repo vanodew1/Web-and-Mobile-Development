@@ -1,0 +1,35 @@
+.app {
+  text-align: center;
+  margin-top: 25vh;
+}
+
+h1 {
+  font-family: 'Times New Roman', serif;
+  font-size: 48px;
+  color: black;
+}
+
+input {
+  width: 80px;
+  padding: 8px;
+  margin: 5px;
+  font-size: 18px;
+  border: 1px solid #999;
+  border-radius: 8px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 18px;
+  font-family: 'Times New Roman', serif;
+  border: 1px solid #999;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.calculate-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+}
