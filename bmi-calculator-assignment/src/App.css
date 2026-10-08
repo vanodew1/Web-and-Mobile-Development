@@ -33,3 +33,14 @@ button {
   color: white;
   border: none;
 }
+
+.active {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+}
+
+.error {
+  color: red;
+  margin: 4px;
+}
